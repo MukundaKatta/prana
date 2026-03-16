@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prana"
+version = "0.1.0"
+description = "Wearable-Free Vital Sign Estimation from Smartphone Camera"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Mukunda Katta"},
+]
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "opencv-python>=4.7",
+    "mediapipe>=0.10",
+    "scikit-learn>=1.2",
+    "pydantic>=2.0",
+    "click>=8.1",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+]
+
+[project.scripts]
+prana = "prana.cli:cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
