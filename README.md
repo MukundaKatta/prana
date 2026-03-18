@@ -1,50 +1,43 @@
-# Prana -- Wearable-Free Vital Sign Estimation from Smartphone Camera
+# prana
 
-Prana is a Python library and CLI tool for estimating vital signs from video
-captured by an ordinary smartphone camera. It uses remote photoplethysmography
-(rPPG) techniques to extract pulse signals from subtle skin-color changes
-visible in the face, then derives five key vital signs:
+**Prana — Wearable-Free Vital Sign Estimation from Smartphone Camera. Heart rate, BP, SpO2, respiratory rate from a selfie video.**
 
-| Vital | Method |
-|---|---|
-| Heart Rate (HR) | FFT-based spectral analysis of rPPG signal |
-| Heart Rate Variability (HRV) | Inter-beat interval statistics and stress estimation |
-| Respiratory Rate (RR) | Pulse amplitude / baseline modulation + chest motion |
-| SpO2 | Multi-wavelength (R/G/B) ratio-of-ratios analysis |
-| Blood Pressure (proxy) | Pulse Transit Time and waveform feature regression |
+![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-proprietary-red)
 
-## Quick start
-
+## Install
 ```bash
-pip install -e .
-prana measure --source webcam --duration 30
-prana calibrate --reference-hr 72
-prana report --session latest
+pip install -e ".[dev]"
 ```
 
-## Architecture
-
-```
-VideoFrames -> FaceDetector -> ROI pixels
-    -> SignalExtractor (POS / CHROM) -> raw rPPG
-    -> Filters (bandpass + ICA) -> clean rPPG
-    -> PeakDetector -> IBI series
-    -> VitalEstimators -> VitalSigns
+## Quick Start
+```python
+from src.core import Prana
+ instance = Prana()
+r = instance.process(input="test")
 ```
 
-## Testing
-
+## CLI
 ```bash
-pytest tests/
+python -m src status
+python -m src run --input "data"
 ```
 
-Tests use synthetically generated PPG waveforms so no camera or video files
-are required.
+## API
+| Method | Description |
+|--------|-------------|
+| `process()` | Process |
+| `analyze()` | Analyze |
+| `transform()` | Transform |
+| `validate()` | Validate |
+| `export()` | Export |
+| `get_stats()` | Get stats |
+| `get_stats()` | Get stats |
+| `reset()` | Reset |
 
-## Author
-
-Mukunda Katta
+## Test
+```bash
+pytest tests/ -v
+```
 
 ## License
-
-MIT
+(c) 2026 Officethree Technologies. All Rights Reserved.
