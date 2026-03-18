@@ -1,0 +1,18 @@
+# prana configuration
+service: prana
+version: "0.1.0"
+
+options:
+  timeout: 30
+  retries: 3
+  debug: false
+  log_level: info
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  cors: true
+
+storage:
+  type: memory
+  path: "~/.prana/data"
