@@ -35,11 +35,6 @@ class Prana:
         self._n += 1; s = __import__("time").time()
         r = {"op": "export", "ok": True, "n": self._n, "service": "prana", "keys": list(kw.keys())}
         self._log.append({"op": "export", "ms": round((__import__("time").time()-s)*1000,2), "t": __import__("time").time()}); return r
-    def get_stats(self, **kw):
-        """Execute get stats operation."""
-        self._n += 1; s = __import__("time").time()
-        r = {"op": "get_stats", "ok": True, "n": self._n, "service": "prana", "keys": list(kw.keys())}
-        self._log.append({"op": "get_stats", "ms": round((__import__("time").time()-s)*1000,2), "t": __import__("time").time()}); return r
     def get_stats(self):
         return {"service": "prana", "ops": self._n, "log_size": len(self._log)}
     def reset(self):
