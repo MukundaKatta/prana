@@ -11,7 +11,7 @@ def main():
     print(f"Result: {result}")
 
     # Run multiple operations
-    ops = ["process", "analyze", "transform]
+    ops = ["process", "analyze", "transform"]
     for op in ops:
         r = getattr(instance, op)(source="example")
         print(f"  {op}: {"✓" if r.get("ok") else "✗"}")
